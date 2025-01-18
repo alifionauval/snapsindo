@@ -13,6 +13,16 @@ import AdminReservation from "./pages/AdminReservation";
 import EditReservation from "./pages/EditReservation";
 import AdminProjects from "./pages/AdminProjects";
 
+const cors = require('cors');
+app.use(
+  cors({
+    origin: 'https://backend-dsnap.vercel.app/', // Ganti sesuai dengan domain frontend Anda
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Metode HTTP yang diizinkan
+    allowedHeaders: ['Content-Type', 'Authorization'], // Header yang diizinkan
+    credentials: true, // Mengizinkan pengiriman cookie
+  })
+);
+
 function App() {
   return (
     <Router>
