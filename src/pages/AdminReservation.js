@@ -28,9 +28,11 @@ const AdminReservation = () => {
         }
 
         const data = await response.json();
+        // Ensure each reservation has an _id field
         const formattedData = data.map((reservation) => ({
           ...reservation,
           date: new Date(reservation.date).toISOString().split('T')[0],
+          _id: reservation._id || reservation.id || null // Fallback to id if _id doesn't exist
         }));
         setReservations(formattedData);
       } catch (error) {
@@ -42,15 +44,20 @@ const AdminReservation = () => {
   }, [navigate]);
 
   const handleEdit = (id) => {
-    // Make sure we're using the actual database ID
-    if (id) {
-      navigate(`/reservation/edit/${id}`);
-    } else {
-      console.error('Invalid reservation ID');
+    console.log('Editing reservation with ID:', id); // Debug log
+    if (!id) {
+      console.error('No valid ID provided for editing');
+      return;
     }
+    navigate(`/reservation/edit/${id}`);
   };
 
   const handleDelete = async (id) => {
+    if (!id) {
+      console.error('No valid ID provided for deletion');
+      return;
+    }
+
     const confirmDelete = window.confirm('Are you sure you want to delete this reservation?');
   
     if (!confirmDelete) {
@@ -143,34 +150,39 @@ const AdminReservation = () => {
             </tr>
           </thead>
           <tbody>
-            {reservations.map((reservation, index) => (
-              <tr key={reservation._id}>
-                <td>{index + 1}</td>
-                <td>{reservation.name}</td>
-                <td>{reservation.email}</td>
-                <td>{reservation.no_telepon}</td>
-                <td>{reservation.subject}</td>
-                <td>{reservation.date}</td>
-                <td>{reservation.jenis_paket}</td>
-                <td>{reservation.message}</td>
-                <td>
-                  <div className="action-buttons">
-                    <button
-                      className="edit-btn"
-                      onClick={() => handleEdit(reservation._id)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="delete-btn"
-                      onClick={() => handleDelete(reservation._id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+            {reservations.map((reservation, index) => {
+              // Debug log
+              console.log('Reservation data:', reservation);
+              
+              return (
+                <tr key={reservation._id || index}>
+                  <td>{index + 1}</td>
+                  <td>{reservation.name}</td>
+                  <td>{reservation.email}</td>
+                  <td>{reservation.no_telepon}</td>
+                  <td>{reservation.subject}</td>
+                  <td>{reservation.date}</td>
+                  <td>{reservation.jenis_paket}</td>
+                  <td>{reservation.message}</td>
+                  <td>
+                    <div className="action-buttons">
+                      <button
+                        className="edit-btn"
+                        onClick={() => handleEdit(reservation._id || reservation.id)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(reservation._id || reservation.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
