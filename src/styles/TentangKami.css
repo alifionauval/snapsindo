@@ -1,0 +1,338 @@
+/* Mengatur container Tentang Kami */
+.tentang-kami-container {
+    text-align: center;
+    margin-top: 0; /* Menghilangkan jarak atas */
+    padding-top: 0; /* Menghilangkan padding atas */
+}
+
+/* Mengatur gambar agar menyatu dengan navbar */
+.team-image-container {
+    position: relative;
+    margin-top: -150px; /* Mengangkat gambar lebih tinggi agar lebih menyatu dengan navbar */
+    z-index: -1;
+}
+
+/* Mengatur ukuran gambar team */
+.team-image {
+    width: 100%;
+    max-width: 100%;
+    height: 80vh; /* Mengurangi tinggi gambar agar tidak terlalu panjang */
+    border-radius: 0;
+    object-fit: cover; /* Memastikan gambar tetap proporsional */
+}
+
+/* Judul Tentang Kami dan Client Kami */
+.tentang-kami-title{
+    font-size: 2.5em; /* Ukuran font yang sama untuk keduanya */
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: #004b23; /* Warna yang sama */
+    font-family: 'Poppins', sans-serif;
+}
+
+.client-title{
+    font-size: 3.9em; /* Ukuran font yang sama untuk keduanya */
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: #004b23; /* Warna yang sama */
+    text-shadow: 2px 2px 4px rgba(255, 241, 0, 0.6);
+    font-family: 'Poppins', sans-serif;
+}
+
+.client-title2{
+    font-size: 1.8em; /* Ukuran font yang sama untuk keduanya */
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: #004b23; /* Warna yang sama */
+    text-shadow: 2px 2px 4px rgba(255, 241, 0, 0.6);
+    font-family: 'Century Gothic', cursive;
+    margin-top: -1.5em;
+    margin-bottom: 2em;
+}
+
+/* Grid untuk konten Tentang Kami */
+.tentang-kami-content {
+    display: grid;
+    grid-template-columns: 1fr; /* Menjadikan grid satu kolom di mobile */
+    gap: 2.2em;
+    margin-bottom: 2em;
+    padding: 0 1em;
+    max-width: 1250px; /* Membatasi lebar maksimum */
+    margin: 0 auto; /* Menyentrakan grid di tengah */
+    font-family: 'Poppins', sans-serif;
+    color: #004b23;
+}
+/* Box di dalam Tentang Kami */
+.tentang-kami-box {
+    background-color: #f9f9f9;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    max-height: 100vh; /* Pastikan modal tidak lebih tinggi dari layar */
+    overflow-y: auto; /* Tambahkan scroll jika konten melebihi tinggi */
+}
+
+  
+.modal-image {
+    width: 100%; /* Pastikan gambar memenuhi lebar modal */
+    height: auto; /* Gambar tetap proporsional */
+    max-height: 90vh; /* Tinggi maksimal gambar dalam modal */
+    object-fit: contain; /* Gambar tidak akan terpotong */
+    border-radius: 10px; /* Tambahkan radius pada gambar */
+}
+
+  
+  .modal-close-button {
+    position: absolute;
+    top: 20px; /* Mengurangi jarak dari atas untuk membuat tombol lebih tinggi */
+    right: 20px; /* Menjaga posisi tombol tetap di sebelah kanan */
+    background-color: #f5f5f5; /* Warna latar tombol */
+    border: none; /* Menghapus border */
+    border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
+    width: 50px; /* Lebar tombol */
+    height: 50px; /* Tinggi tombol */
+    display: flex; /* Mengatur teks dalam tombol agar di tengah */
+    align-items: center; /* Memusatkan teks secara vertikal */
+    justify-content: center; /* Memusatkan teks secara horizontal */
+    font-size: 30px; /* Ukuran simbol close */
+    color: #333; /* Warna simbol close */
+    cursor: pointer; /* Menampilkan kursor pointer saat hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan */
+    transition: background-color 0.3s, transform 0.2s; /* Efek transisi */
+  }
+  
+  .modal-close-button:hover {
+    background-color: #e0e0e0; /* Warna latar saat hover */
+    transform: scale(1.1); /* Efek zoom kecil */
+  }
+  
+  /* Tombol panah */
+  .arrow {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed; /* Ubah posisi menjadi fixed untuk di luar modal */
+    z-index: 1100; /* Pastikan tombol berada di atas modal */
+}
+
+.left-arrow {
+    left: 250px; /* Posisi tombol panah kiri di luar modal */
+    top: 50%; /* Tempatkan di tengah secara vertikal */
+    transform: translateY(-50%); /* Menyesuaikan posisi vertikal */
+}
+
+.right-arrow {
+    right: 250px; /* Posisi tombol panah kanan di luar modal */
+    top: 50%; /* Tempatkan di tengah secara vertikal */
+    transform: translateY(-50%); /* Menyesuaikan posisi vertikal */
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Efek hover */
+    transform: scale(1.1); /* Efek zoom di tempat */
+    transform-origin: center; /* Titik asal zoom di tengah */
+}
+  
+.client-section {
+    background-color: #f1f6ff;
+    padding: 2em 0;
+    margin-bottom: -15em; /* Memperbesar margin bawah agar background lebih panjang */
+    margin-top: 4em;
+    padding-bottom: 5em; /* Memperbesar padding bawah agar background terlihat lebih turun */
+}
+
+
+/* Container logo Client */
+.client-logo-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Menambahkan layout grid untuk 4 kolom */
+    justify-items: center;
+    gap: 2em;
+    flex-wrap: wrap;
+    padding-bottom: 15em;
+}
+
+/* Logo Client */
+.client-logo {
+    width: 250px; /* Lebar lebih besar */
+    height: 150px; /* Tinggi lebih besar */
+    object-fit: contain; /* Menjaga proporsi gambar */
+    transition: transform 0.3s;
+}
+
+/* Tambahkan efek hover */
+.client-logo:hover {
+    transform: scale(1.15); /* Efek membesar saat dihover */
+}
+
+
+/* Bagian Call to Action (CTA) */
+.cta-section {
+    background-color: #ffffff;
+    padding: 2em 0;
+    margin-bottom: 4em;
+}
+
+.cta-text {
+    font-size: 3.5em;
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+    font-family: 'Poppins', sans-serif; /* Font unik untuk gaya tulisan */
+    color: #004b23;
+}
+
+.cta-button {
+    background-color: #004b23;
+    color: white;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.cta-button:hover {
+    background-color: #0f3818;
+    transition: background-color 0.3s;
+}
+
+/* Responsif untuk layar kecil */
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+
+    /* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+
+    .client-title {
+        font-size: 2.5em; /* Ukuran font lebih kecil dari desktop */
+        font-weight: bold;
+        color: #004b23;
+        text-shadow: 2px 2px 4px rgba(255, 241, 0, 0.6);
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 0.5em; /* Jarak bawah lebih kecil */
+        text-align: center; /* Memastikan teks berada di tengah */
+        margin-top: -0.2em;
+    }
+
+    /* Subjudul "CLICK OUR CLIENT" */
+    .client-title2 {
+        font-size: 1.2em; /* Ukuran font tetap */
+        font-weight: bold;
+        color: #004b23;
+        text-shadow: 2px 2px 4px rgba(255, 241, 0, 0.6);
+        font-family: 'Poppins', sans-serif;
+        margin-top: -0.5em; /* Menyesuaikan jarak atas */
+        margin-bottom: 1em; /* Jarak bawah tetap */
+        text-align: center; /* Teks di tengah */
+        padding: 0 1em; /* Tambahkan padding samping untuk memberikan ruang */
+    }
+    
+    .team-image-container {
+        margin-top: -300px; /* Mengangkat gambar lebih tinggi pada mobile */
+    }
+
+    .tentang-kami-content {
+        grid-template-columns: 1fr; /* Menjadikan grid satu kolom di mobile */
+        gap: 2.5em; /* Mengurangi jarak antar item */
+        padding: 0 1em; /* Menjaga padding pada sisi */
+        margin: 0 1em; /* Menambahkan margin pada sisi untuk memberi ruang */
+    }
+
+    .tentang-kami-box {
+        padding: 1em; /* Mengurangi padding dalam kotak */
+        font-size: 0.8em; /* Ukuran font lebih kecil */
+        margin: 1em 0; /* Memberi jarak antara kotak */
+        margin-top: -1.5em;
+    }
+
+    .team-image {
+        max-width: 100%; /* Menyesuaikan ukuran gambar di layar kecil */
+    }
+
+    .modal {
+        width: 100%; /* Lebar modal lebih kecil di layar kecil */
+        max-width: 350px; /* Ukuran maksimal modal lebih kecil */
+    }
+    
+    .modal-image {
+        width: 100%; /* Gambar tetap responsif */
+        height: auto;
+    }
+
+    .modal-close-button {
+        top: 310px; /* Memberikan sedikit jarak lebih rendah dari atas untuk layar kecil */
+        right: 20px; /* Memberikan sedikit jarak dari sisi kanan untuk layar kecil */
+        width: 30px; /* Mengurangi ukuran tombol di mobile */
+        height: 30px; /* Mengurangi ukuran tombol di mobile */
+        font-size: 20px; /* Mengurangi ukuran font pada simbol close */
+      }
+
+      .modal-close-button:hover {
+        background-color: #e0e0e0; /* Warna latar saat hover */
+        transform: scale(1.1); /* Efek zoom kecil */
+      }
+
+      .arrow {
+        width: 40px; /* Ukuran tombol lebih kecil */
+        height: 40px; /* Ukuran tombol lebih kecil */
+        font-size: 24px; /* Ukuran font lebih kecil */
+    }
+
+    .left-arrow {
+        left: 10px; /* Posisi tombol kiri lebih dekat ke sisi kiri */
+    }
+
+    .right-arrow {
+        right: 10px; /* Posisi tombol kanan lebih dekat ke sisi kanan */
+    }
+
+    .client-logo-container {
+        grid-template-columns: repeat(2, 1fr); /* Mengubah layout ke 2 kolom di layar kecil */
+    }
+
+    .client-logo {
+        width: 120px; /* Ukuran lebar lebih kecil untuk mobile */
+        height: 80px; /* Ukuran tinggi lebih kecil untuk mobile */
+        max-width: 100%; /* Pastikan logo tidak melebihi lebar container */
+    }
+
+    .client-section {
+        padding: 3em 0; /* Mengubah padding atas dan bawah menjadi lebih besar hanya di mobile */
+    }
+
+    .cta-text {
+        font-size: 2em;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .cta-button {
+        font-size: 1em;
+        padding: 0.8em 1.5em;
+    }
+}
+}
+
