@@ -16,8 +16,8 @@ const EditReservation = () => {
     no_telepon: '',
     jenis_paket: ''
   });
+  const [error, setError] = useState(null);
 
-  // Fetch existing data
   useEffect(() => {
     const fetchReservation = async () => {
       try {
@@ -39,18 +39,29 @@ const EditReservation = () => {
 
         const data = await response.json();
         if (data) {
+          // Make sure we format the date correctly
           const formattedDate = new Date(data.date).toISOString().split('T')[0];
           setFormData({
-            ...data,
-            date: formattedDate
+            name: data.name || '',
+            email: data.email || '',
+            subject: data.subject || '',
+            date: formattedDate || '',
+            message: data.message || '',
+            no_telepon: data.no_telepon || '',
+            jenis_paket: data.jenis_paket || ''
           });
+        } else {
+          setError('No data found for this reservation');
         }
       } catch (error) {
         console.error('Error fetching reservation:', error);
+        setError('Error loading reservation data');
       }
     };
 
-    fetchReservation();
+    if (id) {
+      fetchReservation();
+    }
   }, [id, navigate]);
 
   const handleChange = (e) => {
@@ -83,15 +94,31 @@ const EditReservation = () => {
         throw new Error('Failed to update reservation');
       }
 
+      alert('Reservation updated successfully!');
       navigate('/reservation');
     } catch (error) {
       console.error('Error updating reservation:', error);
+      alert('Failed to update reservation. Please try again.');
     }
   };
 
   const handleCancel = () => {
     navigate('/reservation');
   };
+
+  if (error) {
+    return (
+      <div className="admin-container">
+        <div className="admin-content">
+          <h1 className="admin-title">Error</h1>
+          <p>{error}</p>
+          <button onClick={handleCancel} className="cancel-button">
+            Back to Reservations
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="admin-container">
