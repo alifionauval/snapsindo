@@ -90,7 +90,11 @@ const AdminProjects = () => {
     if (formData.gambar) payload.append("image", formData.gambar);
 
     try {
-      const response = await fetch(url, { method, body: payload });
+      const response = await fetch(url, {
+        method,
+        body: payload,
+      });
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
