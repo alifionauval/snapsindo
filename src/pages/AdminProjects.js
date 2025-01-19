@@ -82,7 +82,7 @@ const AdminProjects = () => {
   const handleSave = async (formData) => {
     const url = editData
       ? `https://backend-dsnap.vercel.app/api/portfolio/${editData.id}`
-      : "https://backend-dsnap.vercel.app/api/portfolio";
+      : `https://backend-dsnap.vercel.app/api/portfolio`;
 
     const method = editData ? "PUT" : "POST";
     const payload = new FormData();
