@@ -80,18 +80,21 @@ const AdminProjects = () => {
   };
 
   const handleSave = async (formData) => {
+    // URL dan Method ditentukan berdasarkan apakah data sedang diedit atau ditambahkan
     const url = editData
       ? `https://backend-dsnap.vercel.app/api/portfolio/${editData.id}`
       : `https://backend-dsnap.vercel.app/api/portfolio`;
   
     const method = editData ? "PUT" : "POST";
+  
+    // Menggunakan FormData untuk menangani file dan teks
     const payload = new FormData();
-    payload.append("eventName", formData.nama); // Nama harus sesuai dengan API
+    payload.append("eventName", formData.nama); // Sesuaikan dengan nama field API
     if (formData.gambar) {
       payload.append("imageUrl", formData.gambar); // Pastikan nama ini sesuai dengan API
     }
   
-    // Debug: Cek data yang akan dikirim
+    // Debug: Periksa data yang dikirim
     console.log("Payload to be sent:", [...payload]);
   
     try {
@@ -100,6 +103,7 @@ const AdminProjects = () => {
         body: payload,
       });
   
+      // Jika respons gagal
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
@@ -107,6 +111,7 @@ const AdminProjects = () => {
         );
       }
   
+      // Refresh data proyek setelah berhasil
       const updatedData = await fetch("https://backend-dsnap.vercel.app/api/portfolio").then((res) => res.json());
       setProjects(
         updatedData.map((item) => ({
@@ -115,7 +120,7 @@ const AdminProjects = () => {
           gambar: item.imageUrl,
         }))
       );
-      setModal(false);
+      setModal(false); // Tutup modal setelah berhasil
     } catch (error) {
       console.error("Error saving project:", error);
       alert(error.message);
