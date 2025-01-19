@@ -162,9 +162,6 @@ const Projects = () => {
     <section className="cta-section">
         <h3 className="cta-text">Give Some Snaps To</h3>
         <h4 className="cta-text">Your Brand !</h4>
-        <Link to="/kontak-kami">
-            <button className="cta-button">Contact Us !</button>
-        </Link>
     </section>
 </div>
     );
