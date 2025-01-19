@@ -93,6 +93,8 @@ const AdminProjects = () => {
       const response = await fetch(url, {
         method,
         body: payload,
+        console.log(formData.data.eventName);
+        console.log(formData.data.imageUrl);
       });
 
       if (!response.ok) {
